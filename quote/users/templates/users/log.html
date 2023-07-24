@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <h1 class="mb-5">Registration User</h1>
+
+        {% if form.errors and form.non_field_errors %}
+        <span class="alert alert-danger" role="alert">{{ form.non_field_errors}}</span>
+        {% endif %}
+
+        <form method="post" class="login">
+          {% csrf_token %}
+          <div class="mb-3">  
+            <lable class="form-label">Name
+                {{form.username}}
+            </lable>
+            <span>{{form.errors.username}}</span>
+          </div>
+          <div class="mb-3">  
+            <lable class="form-label">Password
+                {{form.password1}}
+            </lable>
+            <span>{{form.errors.password1}}</span>
+          </div>
+          <div class="mb-3">  
+            <lable class="form-label">Confirm Password
+                {{form.password2}}
+            </lable>
+            <span>{{form.errors.password2}}</span>
+          </div>
+          <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
