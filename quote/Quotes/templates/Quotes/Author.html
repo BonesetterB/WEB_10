@@ -2,9 +2,21 @@
 
 {% block title %} Author {% endblock %}
 {% block content %}
-<h1>Author</h1>
-{{author.fullname}}
-{{author.born_date}}
-{{author.born_location}}
-{{author.description}}
+<div class="container">
+    
+
+
+    <div class="author-details">
+        <h3 class="author-title">{{author.fullname}}</h3>
+        <p><strong>Born:</strong> <span class="author-born-date">{{author.born_date}}</span> <span class="author-born-location">{{author.born_location}}</span></p>
+        <p><strong>Description:</strong></p>
+        <div class="author-description">
+            {{author.description}} 
+           </div>
+    </div>
+    
+
+</div>
+
+
 {% endblock %}
