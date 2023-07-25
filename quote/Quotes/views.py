@@ -4,10 +4,16 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.core.paginator import Paginator
 
 def index(request):
-    quotes = Quote.objects.all()
-    return render(request,'Quotes/quotes.html', context={'quotes':quotes})
+    quote_list = Quote.objects.all()
+    paginator = Paginator(quote_list, 10)  
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'Quotes/quotes.html', {'page_obj': page_obj})
 
 def authores(request,author_name):
     author_instance = get_object_or_404(author, fullname=author_name)
