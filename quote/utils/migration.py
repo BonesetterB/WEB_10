@@ -8,7 +8,7 @@ django.setup()
 
 from Quotes.models import author, Quote, Tag
 
-client=MongoClient(f"mongodb+srv://CityNine:60604@croaker.hbarqcq.mongodb.net/?retryWrites=true&w=majority")
+client=MongoClient(f"mongodb+srv://CityNine:{{PASSWORD}}@croaker.hbarqcq.mongodb.net/?retryWrites=true&w=majority")
 
 db=client.HMW_09
 
