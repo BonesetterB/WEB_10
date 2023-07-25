@@ -1,21 +1,22 @@
-{% extends 'base.html' %}
+{% extends 'Quotes/base.html' %}
 
 {% block title %} Quotes {% endblock %}
 {% block content %}
+<div class="container">
 <div class="row">
     <div class="col-md-8"> 
-        {% for qoute in quotes %}
+        {% for quote in quotes %}
         <div class="quote" itemscope="" itemtype="http://schema.org/CreativeWork">
             <span class="text" itemprop="text">
-                {{qoute.quote}}
+                “{{quote.quote}}”
             </span>
-            <span>by <small class="author" itemprop="author">{{qoute.author}}</small>
-            <a href="/author/{{qoute.author}}">(about)</a>
+            <span>by <small class="author" itemprop="author">{{quote.author.fullname}}</small>
+            <a href="{% url 'Quotes:author' quote.author.fullname %}">(about)</a>
             </span>
             <div class="tags">
                 Tags:
-                {% for tag in qoute.tags %}
-                <a class="tag" href="/tag{{tag}}">{{tag}}</a>
+                {% for tag in quote.tags.all  %}
+                <a class="tag" href="/tag{{tag}}">{{tag.name}}</a>
                 {% endfor %}
 
                 
@@ -23,6 +24,7 @@
         </div>
         {% endfor %}
     </div>
+</div>
 </div>
 {% endblock %}
 

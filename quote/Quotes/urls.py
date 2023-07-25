@@ -4,8 +4,10 @@ from . import views
 app_name='Quotes'
 
 urlpatterns = [
-    path('',views.index, name='Home'),
-    path('quote/',views.quote, name='quote'),
-    path('Authors/',views.Authors, name='Authors'),
-    path('Author/',views.Author, name='Author'),
+    path('Quotes/',views.index, name='Home'),
+    path('author/<str:author_name>/', views.authores, name='author'),
+    path('Author/create/', views.CreateAuthorView.as_view(), name='create_author'),
+    path('Quote/create/', views.CreateQuoteView.as_view(), name='create_Quote'),
+
+    
 ]

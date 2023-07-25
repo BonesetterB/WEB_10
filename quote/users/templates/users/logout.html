@@ -1,0 +1,14 @@
+{% extends 'Quotes/base.html' %}
+
+{% block title %} Logout {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Logout</h1>
+    <p>Are you sure you want to log out?</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit">Logout</button>
+    </form>
+  </div>
+{% endblock %}
