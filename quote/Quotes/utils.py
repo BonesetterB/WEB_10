@@ -1,9 +1,15 @@
 from pymongo import MongoClient
+import os
+
 
 def get_base():
-
-    client=MongoClient(f"mongodb+srv://CityNine:{{PASSWORD}}@croaker.hbarqcq.mongodb.net/?retryWrites=true&w=majority")
+    mongodb_username = os.getenv("MONGODB_USERNAME")
+    mongodb_password = os.getenv("MONGODB_PASSWORD")
+    mongodb_cluster_url = os.getenv("MONGODB_CLUSTER_URL")
+    mongodb_database = os.getenv("MONGODB_DATABASE")
     
-    db=client.HMW_09
-
+    connection_string = f"mongodb+srv://{mongodb_username}:{mongodb_password}@{mongodb_cluster_url}/{mongodb_database}?retryWrites=true&w=majority"
+    
+    client = MongoClient(connection_string)
+    db = client[mongodb_database]
     return db
