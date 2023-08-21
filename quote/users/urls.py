@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import RegistView
+from .views import RegistView,ResetPasswordView
 from .forms import LoginAuthenchens
-from django.contrib.auth.views import LogoutView,LoginView
+from django.contrib.auth.views import LogoutView,LoginView,PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+
 
 app_name='users'
 
@@ -9,8 +10,7 @@ urlpatterns = [
     path('Registration/', RegistView.as_view(), name='Log'),
     path('sign/', LoginView.as_view(template_name='users/sign.html', form_class=LoginAuthenchens, redirect_authenticated_user=True), name='Sign'),
     path('logout/', LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-    path('profile/', profile, name='profile'),
-    path('reset-password/', views.ResetPasswordView.as_view(), name='password_reset'),
+    path('reset-password/', ResetPasswordView.as_view(), name='password_reset'),
     path('reset-password/done/', PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'),
          name='password_reset_done'),
     path('reset-password/confirm/<uidb64>/<token>/',

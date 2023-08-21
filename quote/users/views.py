@@ -2,6 +2,9 @@ from django.shortcuts import render,redirect
 from django.views import View
 from .forms import RegistForm
 from django.contrib import messages
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
 
 class RegistView(View):
     template_name='users/log.html'
@@ -20,17 +23,6 @@ class RegistView(View):
         return render(request,self.template_name,{'form':form})
     
 
-@login_required
-def profile(request):
-    if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if profile_form.is_valid():
-            profile_form.save()
-            messages.success(request, 'Your profile is updated successfully')
-            return redirect(to='users:profile')
-
-    profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'users/profile.html', {'profile_form': profile_form})
 
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
